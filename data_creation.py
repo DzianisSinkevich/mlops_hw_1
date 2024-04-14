@@ -3,7 +3,7 @@ from random import randint
 import pandas as pd
 import sys
 
-print("<< Start creation >>")
+print("<<< Start creation >>>")
 
 df_count = int(sys.argv[1])
 
@@ -73,4 +73,4 @@ for i in range(df_count):
     create_df('train', 'df_train_' + str(i) + '.csv')
     create_df('test', 'df_test_' + str(i) + '.csv')
 
-print("<< Finish creation >>\n")
+print("<<< Finish creation >>>\n")

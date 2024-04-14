@@ -1,19 +1,18 @@
 from sklearn.preprocessing import StandardScaler  # Импортируем стандартизацию от scikit-learn
 from sklearn.preprocessing import OneHotEncoder  # Импортируем One-Hot Encoding от scikit-learn
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
-import sys
 import warnings
+import sys
+
 
 warnings.filterwarnings('ignore')
 pd.options.mode.chained_assignment = None
 
-file_path = sys.argv[1]
-# file_path = "test/df_test_2.csv"
-
+df_count = int(sys.argv[1])
 num_columns = ['day_mean_temp']
 cat_columns = ['month']
 
-print("<< Start preprocessing '" + file_path + "' >>")
+print("<<< Start preprocessing >>>")
 
 
 def read_file(file_path):
@@ -62,6 +61,10 @@ def df_prerpocessing(file_path):
     save_file(df_ohe, file_path_ohe)
 
 
-df_prerpocessing(file_path)
+for i in range(df_count):
+    file_path = "train/df_train_" + str(i) + ".csv"
+    print("<< Start preprocessing '" + file_path + "' >>")
+    df_prerpocessing(file_path)
+    print("<< Finish preprocessing '" + file_path + "' >>\n")
 
-print("<< Finish preprocessing '" + file_path + "' >>\n")
+print("<<< Finish preprocessing >>>\n")

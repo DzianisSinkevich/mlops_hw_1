@@ -1,9 +1,8 @@
 from sklearn.metrics import r2_score  # коэффициент детерминации  от Scikit-learn
 from sklearn.metrics import mean_squared_error as mse  # метрика MSE от Scikit-learn
 import warnings
-import os.path
-import fnmatch
 from random import randint
+import sys
 
 from model_preparation import preparation
 
@@ -11,10 +10,11 @@ import pandas as pd  # Библиотека Pandas для работы с таб
 
 warnings.filterwarnings('ignore')
 
-train_df_path = "train/df_train_" + str(randint(0, len(fnmatch.filter(os.listdir('test/'), '*.*')) - 1)) + ".csv"
-test_df_path = "test/df_test_" + str(randint(0, len(fnmatch.filter(os.listdir('test/'), '*.*')) - 1)) + ".csv"
+df_count = int(sys.argv[1])
+train_df_path = "train/df_train_" + str(randint(0, df_count - 1)) + ".csv"
+test_df_path = "test/df_test_" + str(randint(0, df_count - 1)) + ".csv"
 
-print("<< Start model testing >>")
+print("<<< Start model testing >>>")
 
 
 def read_file(file_path):
@@ -58,4 +58,4 @@ def main(train_df_path, test_df_path):
 
 
 main(train_df_path, test_df_path)
-print("<< Finish model testing >>")
+print("<<< Finish model testing >>>")
