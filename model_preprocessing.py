@@ -1,13 +1,13 @@
 from sklearn.preprocessing import StandardScaler  # Импортируем стандартизацию от scikit-learn
 from sklearn.preprocessing import OneHotEncoder  # Импортируем One-Hot Encoding от scikit-learn
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
-from sys import argv
+import sys
 import warnings
 
 warnings.filterwarnings('ignore')
 pd.options.mode.chained_assignment = None
 
-file_path = argv
+file_path = sys.argv[1]
 # file_path = "test/df_test_2.csv"
 
 print("file_path = " + file_path)

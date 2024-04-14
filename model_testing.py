@@ -5,11 +5,11 @@ import warnings
 from model_preparation import preparation
 
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
-from sys import argv
+import sys
 
 warnings.filterwarnings('ignore')
 
-file_path = argv
+file_path = sys.argv[1]
 # file_path = "train/df_train_2.csv"
 
 print("file_path = " + file_path)
