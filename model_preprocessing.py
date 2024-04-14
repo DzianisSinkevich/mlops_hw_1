@@ -10,8 +10,6 @@ pd.options.mode.chained_assignment = None
 file_path = sys.argv[1]
 # file_path = "test/df_test_2.csv"
 
-print("file_path = " + file_path)
-
 num_columns = ['day_mean_temp']
 cat_columns = ['month']
 
@@ -52,7 +50,7 @@ def df_prerpocessing(file_path):
 
     # Предобработка категориального признака. One-hot кодировиние
     # Создание Объекта OneHotEncoder() и его "обучение" .fit
-    ohe = OneHotEncoder(drop='if_binary', handle_unknown='ignore', sparse=False)
+    ohe = OneHotEncoder(drop='if_binary', handle_unknown='ignore', sparse_output=False)
     ohe.fit(df[cat_columns])
 
     # Применяем трансформацию .transform и сохраняем результат в Dataframe
