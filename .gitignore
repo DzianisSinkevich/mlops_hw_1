@@ -20,3 +20,6 @@ dist/
 
 # Контрольные точки в Jupyter notebook
 .ipynb_checkpoints
+
+# .csv файлы
+*.csv
