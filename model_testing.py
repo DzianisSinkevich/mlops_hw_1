@@ -13,6 +13,8 @@ file_path = sys.argv[1]
 test_df_path = sys.argv[2]
 # file_path = "train/df_train_2.csv"
 
+print("<< Start model testing >>")
+
 
 def read_file(file_path):
     try:
@@ -54,3 +56,4 @@ def main(file_path):
 
 
 main(file_path)
+print("<< Finish model testing >>")
