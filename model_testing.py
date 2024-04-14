@@ -10,6 +10,7 @@ import sys
 warnings.filterwarnings('ignore')
 
 file_path = sys.argv[1]
+test_df_path = sys.argv[2]
 # file_path = "train/df_train_2.csv"
 
 
@@ -41,7 +42,7 @@ def main(file_path):
     df = read_file(file_path)
 
     # разбиваем на тестовую и валидационную
-    dft = read_file("test/df_test_2.csv")
+    dft = read_file(test_df_path)
     x_test = dft.drop(['month'], axis=1)
     y_test = dft['month']
 
