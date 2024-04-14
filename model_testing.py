@@ -1,17 +1,18 @@
 from sklearn.metrics import r2_score  # коэффициент детерминации  от Scikit-learn
 from sklearn.metrics import mean_squared_error as mse  # метрика MSE от Scikit-learn
 import warnings
+import os.path
+import fnmatch
+from random import randint
 
 from model_preparation import preparation
 
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
-import sys
 
 warnings.filterwarnings('ignore')
 
-file_path = sys.argv[1]
-test_df_path = sys.argv[2]
-# file_path = "train/df_train_2.csv"
+train_df_path = "train/df_train_" + str(randint(0, len(fnmatch.filter(os.listdir('test/'), '*.*')) - 1)) + ".csv"
+test_df_path = "test/df_test_" + str(randint(0, len(fnmatch.filter(os.listdir('test/'), '*.*')) - 1)) + ".csv"
 
 print("<< Start model testing >>")
 
@@ -40,8 +41,8 @@ def calculate_metric(model_pipe, x, y, metric=r2_score, **kwargs):
     return metric(y, y_model, **kwargs)
 
 
-def main(file_path):
-    df = read_file(file_path)
+def main(train_df_path, test_df_path):
+    df = read_file(train_df_path)
 
     # разбиваем на тестовую и валидационную
     dft = read_file(test_df_path)
@@ -56,5 +57,5 @@ def main(file_path):
     print(f"rmse of model on test data: {calculate_metric(model, x_test, y_test, mse, squared=False):.4f}")
 
 
-main(file_path)
+main(train_df_path, test_df_path)
 print("<< Finish model testing >>")

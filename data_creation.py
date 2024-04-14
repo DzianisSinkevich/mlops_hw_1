@@ -1,9 +1,11 @@
 import os
 from random import randint
 import pandas as pd
-
+import sys
 
 print("<< Start creation >>")
+
+df_count = int(sys.argv[1])
 
 
 def delete_files(dir_path):
@@ -67,9 +69,8 @@ def create_df(dir_path, file_name):
     save_file(df, dir_path, file_name)
 
 
-create_df('train', 'df_train_1.csv')
-create_df('train', 'df_train_2.csv')
-create_df('test', 'df_test_1.csv')
-create_df('test', 'df_test_2.csv')
+for i in range(df_count):
+    create_df('train', 'df_train_' + str(i) + '.csv')
+    create_df('test', 'df_test_' + str(i) + '.csv')
 
 print("<< Finish creation >>\n")
