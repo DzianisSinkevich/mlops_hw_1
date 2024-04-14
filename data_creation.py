@@ -37,7 +37,7 @@ def save_file(df, dir_path, file_name):
 
 def outlier_gen(df):
     for i in range(randint(3, 10)):
-        a = randint(1, 12)
+        a = randint(1, 6)
         mask = df['month'] == a
         max_val = df[mask]['day_mean_temp'].max(axis=0)
         outlier = randint(7, 10)
