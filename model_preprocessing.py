@@ -10,7 +10,7 @@ pd.options.mode.chained_assignment = None
 file_path = argv
 # file_path = "test/df_test_2.csv"
 
-print("file_path = " + {file_path})
+print("file_path = " + file_path)
 
 num_columns = ['day_mean_temp']
 cat_columns = ['month']
