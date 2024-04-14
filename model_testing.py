@@ -12,6 +12,8 @@ warnings.filterwarnings('ignore')
 file_path = argv
 # file_path = "train/df_train_2.csv"
 
+print("file_path = " + {file_path})
+
 
 def read_file(file_path):
     try:
