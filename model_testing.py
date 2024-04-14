@@ -50,7 +50,7 @@ def main(file_path):
 
     model = preparation(df)
 
-    print("Model results:")
+    print("\nModel results:")
     print(f"r2 of model on test data: {calculate_metric(model, x_test, y_test):.4f}")
     print(f"mse of model on test data: {calculate_metric(model, x_test, y_test, mse):.4f}")
     print(f"rmse of model on test data: {calculate_metric(model, x_test, y_test, mse, squared=False):.4f}")
