@@ -1,6 +1,5 @@
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler  # Импортируем стандартизацию от scikit-learn
-from sklearn.model_selection import train_test_split  # функция разбиения на тренировочную и тестовую выборку
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import SGDRegressor  # Линейная регрессия с градиентным спуском от scikit-learn
 import warnings

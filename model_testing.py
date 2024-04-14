@@ -9,8 +9,8 @@ from sys import argv
 
 warnings.filterwarnings('ignore')
 
-# a, file_path = argv
-file_path = "train/df_train_2.csv"
+file_path = argv
+# file_path = "train/df_train_2.csv"
 
 
 def read_file(file_path):

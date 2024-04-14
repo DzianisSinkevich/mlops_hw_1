@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings('ignore')
 pd.options.mode.chained_assignment = None
 
-a, file_path = argv
+file_path = argv
 # file_path = "test/df_test_2.csv"
 
 num_columns = ['day_mean_temp']
