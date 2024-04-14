@@ -13,7 +13,7 @@ file_path = sys.argv[1]
 num_columns = ['day_mean_temp']
 cat_columns = ['month']
 
-print("<< Start preprocessing >>")
+print("<< Start preprocessing '" + file_path + "' >>")
 
 
 def read_file(file_path):
@@ -64,4 +64,4 @@ def df_prerpocessing(file_path):
 
 df_prerpocessing(file_path)
 
-print("<< Finish preprocessing >>\n")
+print("<< Finish preprocessing '" + file_path + "' >>\n")
