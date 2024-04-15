@@ -4,15 +4,13 @@ import pandas as pd  # Библиотека Pandas для работы с таб
 import warnings
 import sys
 
-
 warnings.filterwarnings('ignore')
 pd.options.mode.chained_assignment = None
 
+print("<<< Start preprocessing >>>")
 df_count = int(sys.argv[1])
 num_columns = ['day_mean_temp']
 cat_columns = ['month']
-
-print("<<< Start preprocessing >>>")
 
 
 def read_file(file_path):

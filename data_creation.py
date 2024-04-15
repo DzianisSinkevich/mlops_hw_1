@@ -21,12 +21,16 @@ def delete_files(dir_path):
 
 
 dir_path = 'test'
-delete_files(dir_path)
+if os.path.isdir(dir_path):
+    delete_files(dir_path)
 dir_path = 'train'
-delete_files(dir_path)
+if os.path.isdir(dir_path):
+    delete_files(dir_path)
 
 
 def save_file(df, dir_path, file_name):
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
     try:
         file_path = os.path.join(dir_path, file_name)
         df.to_csv(file_path, index=False)

@@ -3,15 +3,13 @@ from sklearn.metrics import mean_squared_error as mse  # метрика MSE от
 import warnings
 from random import randint
 import sys
-
-from model_preparation import preparation
+import pickle
 
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
 
 warnings.filterwarnings('ignore')
 
 df_count = int(sys.argv[1])
-train_df_path = "train/df_train_" + str(randint(0, df_count - 1)) + ".csv"
 test_df_path = "test/df_test_" + str(randint(0, df_count - 1)) + ".csv"
 
 print("<<< Start model testing >>>")
@@ -28,6 +26,16 @@ def read_file(file_path):
         print("Error uccured while readed file '" + file_path + "'.")
 
 
+def load_model():
+    try:
+        model = pickle.load(open('model/model.pkl', 'rb'))
+        print("Model model/model.pkl loaded successfully.")
+        return model
+    except IOError:
+        print("Error uccured while loaded model/model.pkl.")
+
+
+
 def calculate_metric(model_pipe, x, y, metric=r2_score, **kwargs):
     """Расчет метрики.
     Параметры:
@@ -41,15 +49,13 @@ def calculate_metric(model_pipe, x, y, metric=r2_score, **kwargs):
     return metric(y, y_model, **kwargs)
 
 
-def main(train_df_path, test_df_path):
-    df = read_file(train_df_path)
-
+def main(test_df_path):
     # разбиваем на тестовую и валидационную
     dft = read_file(test_df_path)
     x_test = dft.drop(['month'], axis=1)
     y_test = dft['month']
 
-    model = preparation(df)
+    model = load_model()
 
     print("\nModel results:")
     print(f"r2 of model on test data: {calculate_metric(model, x_test, y_test):.4f}")
@@ -57,5 +63,5 @@ def main(train_df_path, test_df_path):
     print(f"rmse of model on test data: {calculate_metric(model, x_test, y_test, mse, squared=False):.4f}")
 
 
-main(train_df_path, test_df_path)
+main(test_df_path)
 print("<<< Finish model testing >>>")

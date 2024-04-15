@@ -3,10 +3,17 @@ from sklearn.preprocessing import StandardScaler  # Импортируем ст�
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import SGDRegressor  # Линейная регрессия с градиентным спуском от scikit-learn
 import warnings
-
+from random import randint
+import pickle
+import sys
+import os
 import pandas as pd  # Библиотека Pandas для работы с табличными данными
 
 warnings.filterwarnings('ignore')
+
+print("<<< Start preparation >>>")
+df_count = int(sys.argv[1])
+train_df_path = "train/df_train_" + str(randint(0, df_count - 1)) + ".csv"
 
 
 def read_file(file_path):
@@ -20,7 +27,18 @@ def read_file(file_path):
         print("Error uccured while readed file '" + file_path + "'.")
 
 
-def preparation(df):
+def save_model(model):
+    try:
+        if not os.path.isdir('model'):
+            os.mkdir('model')
+        pickle.dump(model, open('model/model.pkl', 'wb'))
+        print("Model model/model.pkl saved successfully.")
+    except IOError:
+        print("Error uccured while saved model/model.pkl.")
+
+
+def preparation(train_df_path):
+    df = read_file(train_df_path)
     num_pipe_day_mean_temp = Pipeline([('scaler', StandardScaler())])
     num_day_mean_temp = ['day_mean_temp']
 
@@ -35,5 +53,9 @@ def preparation(df):
     x_train_prep = preprocessor.fit_transform(x_train)
     model = SGDRegressor(random_state=42)
     model.fit(x_train_prep, y_train)
+    save_model(model)
 
-    return model
+
+preparation(train_df_path)
+
+print("<<< Finish preparation >>>\n")
